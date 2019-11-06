@@ -20,7 +20,7 @@ radix_sort[T : TYPE, (IMPORTING total_preorder) <= : (total_preorder?[T]), (IMPO
 
 BEGIN
 
-IMPORTING sorting, mergesort
+IMPORTING sorting, mergesort, sorting_aux
 
 
 
