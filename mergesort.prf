@@ -529,7 +529,6 @@
     (x!2 skolem-const-decl "list[T]" mergesort nil)
     (NOT const-decl "[bool -> bool]" booleans nil)
     (dichotomous? const-decl "bool" orders nil)
-    (TRUE const-decl "bool" booleans nil)
     (k skolem-const-decl
      "below[length(cons(car(x!2), merge(x!1, cdr(x!2))))]" mergesort
      nil)
@@ -1172,36 +1171,162 @@
    shostak))
  (merge_sort_is_permutation 0
   (merge_sort_is_permutation-1 nil 3589041194
-   ("" (induct "l") (("1" (postpone) nil nil) ("2" (postpone) nil nil))
+   ("" (measure-induct "length(l)" "l")
+    (("" (skeep)
+      (("" (expand merge_sort 1)
+        (("" (lift-if)
+          (("" (prop)
+            (("1" (expand permutations) (("1" (propax) nil nil)) nil)
+             ("2" (expand permutations 2)
+              (("2" (skeep)
+                (("2" (lemma "merge_occurrence")
+                  (("2" (inst?)
+                    (("2" (replaces)
+                      (("2"
+                        (inst-cp -1 "prefix(x, floor(length(x) / 2))")
+                        (("2" (replaces)
+                          (("2" (prop)
+                            (("1" (expand permutations -1)
+                              (("1"
+                                (inst?)
+                                (("1"
+                                  (replaces)
+                                  (("1"
+                                    (assert)
+                                    (("1"
+                                      (inst-cp
+                                       -1
+                                       "suffix(x, floor(length(x) / 2))")
+                                      (("1"
+                                        (prop)
+                                        (("1"
+                                          (expand permutations -1)
+                                          (("1"
+                                            (inst?)
+                                            (("1"
+                                              (replaces)
+                                              (("1"
+                                                (assert)
+                                                (("1"
+                                                  (assert)
+                                                  (("1"
+                                                    (expand
+                                                     permutations)
+                                                    (("1"
+                                                      (assert)
+                                                      (("1"
+                                                        (lemma
+                                                         "occurrences_of_app")
+                                                        (("1"
+                                                          (inst?)
+                                                          (("1"
+                                                            (replaces)
+                                                            (("1"
+                                                              (replaces
+                                                               -1
+                                                               2)
+                                                              (("1"
+                                                                (replace
+                                                                 -1
+                                                                 2
+                                                                 rl)
+                                                                (("1"
+                                                                  (lemma
+                                                                   "app_prefix_suffix")
+                                                                  (("1"
+                                                                    (inst?)
+                                                                    (("1"
+                                                                      (replace
+                                                                       -1
+                                                                       2
+                                                                       rl)
+                                                                      (("1"
+                                                                        (propax)
+                                                                        nil
+                                                                        nil))
+                                                                      nil))
+                                                                    nil))
+                                                                  nil))
+                                                                nil))
+                                                              nil))
+                                                            nil))
+                                                          nil))
+                                                        nil))
+                                                      nil))
+                                                    nil))
+                                                  nil))
+                                                nil))
+                                              nil))
+                                            nil))
+                                          nil)
+                                         ("2"
+                                          (lemma "length_suffix")
+                                          (("2"
+                                            (inst?)
+                                            (("2"
+                                              (replaces)
+                                              (("2" (assert) nil nil))
+                                              nil))
+                                            nil))
+                                          nil))
+                                        nil))
+                                      nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil)
+                             ("2" (lemma "length_prefix")
+                              (("2"
+                                (inst?)
+                                (("2"
+                                  (replaces)
+                                  (("2"
+                                    (replaces)
+                                    (("2" (assert) nil nil))
+                                    nil))
+                                  nil))
+                                nil))
+                              nil))
+                            nil))
+                          nil))
+                        nil))
+                      nil))
+                    nil))
+                  nil))
+                nil))
+              nil))
+            nil))
+          nil))
+        nil))
+      nil))
     nil)
-   ((nnrat_div_posrat_is_nnrat application-judgement "nonneg_rat"
-     rationals nil)
-    (nonneg_floor_is_nat application-judgement "nat" floor_ceil nil)
-    (numfield nonempty-type-eq-decl nil number_fields nil)
-    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
-    (below type-eq-decl nil nat_types nil)
-    (suffix def-decl "list[T]" sorting_aux nil)
-    (integer nonempty-type-from-decl nil integers nil)
-    (AND const-decl "[bool, bool -> bool]" booleans nil)
-    (<= const-decl "bool" reals nil)
-    (floor const-decl "{i | i <= x & x < i + 1}" floor_ceil nil)
-    (/= const-decl "boolean" notequal nil)
-    (nznum nonempty-type-eq-decl nil number_fields nil)
-    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+   ((merge_occurrence formula-decl nil mergesort nil)
     (length_prefix formula-decl nil sorting_aux nil)
+    (length_suffix formula-decl nil sorting_aux nil)
     (real_lt_is_strict_total_order name-judgement
      "(strict_total_order?[real])" real_props nil)
-    (real_le_is_total_order name-judgement "(total_order?[real])"
-     real_props nil)
-    (TRUE const-decl "bool" booleans nil)
+    (int_minus_int_is_int application-judgement "int" integers nil)
     (app_prefix_suffix formula-decl nil sorting_aux nil)
     (occurrences_of_app formula-decl nil sorting_aux nil)
+    (real_le_is_total_order name-judgement "(total_order?[real])"
+     real_props nil)
     (nnint_plus_nnint_is_nnint application-judgement "nonneg_int"
      integers nil)
-    (merge_occurrence formula-decl nil mergesort nil)
-    (int_minus_int_is_int application-judgement "int" integers nil)
-    (length_suffix formula-decl nil sorting_aux nil)
+    (suffix def-decl "list[T]" sorting_aux nil)
+    (/ const-decl "[numfield, nznum -> numfield]" number_fields nil)
+    (nznum nonempty-type-eq-decl nil number_fields nil)
+    (/= const-decl "boolean" notequal nil)
+    (floor const-decl "{i | i <= x & x < i + 1}" floor_ceil nil)
+    (<= const-decl "bool" reals nil)
+    (AND const-decl "[bool, bool -> bool]" booleans nil)
+    (integer nonempty-type-from-decl nil integers nil)
     (prefix def-decl "list[T]" sorting_aux nil)
+    (below type-eq-decl nil nat_types nil)
+    (+ const-decl "[numfield, numfield -> numfield]" number_fields nil)
+    (numfield nonempty-type-eq-decl nil number_fields nil)
+    (nnrat_div_posrat_is_nnrat application-judgement "nonneg_rat"
+     rationals nil)
+    (nonneg_floor_is_nat application-judgement "nat" floor_ceil nil)
     (permutations const-decl "bool" sorting_aux nil)
     (merge_sort def-decl "list[T]" mergesort nil)
     (wf_nat formula-decl nil naturalnumbers nil)

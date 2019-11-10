@@ -92,7 +92,7 @@ FORALL (l : list[T]) :
 %%%%% function.                                              %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-merge_sort_is_permutation: CONJECTURE
+merge_sort_is_permutation: Conjecture
 FORALL (l : list[T]) :
   permutations(merge_sort(l), l)
 
@@ -112,4 +112,3 @@ merge_sort_is_conservative: AXIOM
       nth(merge_sort(l),n) = nth(l,j)
 
 end mergesort
-
